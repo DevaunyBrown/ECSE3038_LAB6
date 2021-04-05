@@ -22,16 +22,16 @@ void setup()
   sendData("AT+CWJAP=\"MonaConnect\",\"\"\r\n", 5000, st);
   
 }
-//sendData(AT+CIPSTART="TCP","10.22.12.97","5000", 3000, st);
+//sendData(AT+CIPSTART="TCP","ip","5000", 3000, st);
 void loop()
 {
-  sendData("AT+CIPSTART=\"TCP\",\"10.22.12.97\",5000\r\n", 3000, st);
+  sendData("AT+CIPSTART=\"TCP\",\"ip\",5000\r\n", 3000, st);
   content="";
   content = "{	\"tank_id\": \"5\"" + String(", \"water_level\": ");
   content += String(getWaterLevel());
   content += String(" }");
   post ="";
-  post = String("POST /tank HTTP/1.1\r\nHost: 10.22.12.97:5000\r\nContent-Type: application/json\r\nContent-Length: ");
+  post = String("POST /tank HTTP/1.1\r\nHost:ip:5000\r\nContent-Type: application/json\r\nContent-Length: ");
   post += String(content.length());
   post += String("\r\n\r\n");
   post += content; 
